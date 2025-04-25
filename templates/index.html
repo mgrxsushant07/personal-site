@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Student Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<style>
+    ::placeholder {
+        color: white !important;
+        opacity: 1; /* Ensure full opacity */
+    }
+
+    /* For compatibility with some older browsers */
+    :-ms-input-placeholder {
+        color: white !important;
+    }
+
+    ::-ms-input-placeholder {
+        color: white !important;
+    }
+
+    /* Social Icons Styling */
+    .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .social-link {
+        color: #eebbc3;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-link:hover {
+        color: #ffffff;
+        transform: translateX(-5px);
+    }
+
+    /* Button Hover Effect */
+    .btn-primary {
+        background-color: #eebbc3;
+        border-color: #eebbc3;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #dd99a1;
+        border-color: #dd99a1;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .social-icons {
+            position: static;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 2rem;
+            transform: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+    }
+</style>
+
+
+<body>
+    <div id="dynamic-bg"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sushant Gaha Magar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item d-flex align-items-center ms-3">
+                        <button id="theme-toggle" class="btn btn-outline-light btn-sm" title="Toggle dark/light mode">
+                            <span id="theme-toggle-icon" class="bi bi-moon"></span> <span class="d-none d-md-inline">Dark/Light</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ <!-- Add Font Awesome CSS to your head section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<section class="hero d-flex align-items-center justify-content-center" id="home">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="profile-img img-fluid rounded-circle shadow" style="width: 180px; height: 180px; object-fit: cover; border: 6px solid #eebbc3; background: #fff;">
+            </div>
+            <div class="col-md-8 text-center text-md-start">
+                <h1 class="display-4"><h3>Hello From</h3><br><h1><b>Sushant Gaha Magar</b></h1></h1>
+                <p class="lead">Aspiring Developer | Tech Enthusiast | Problem Solver</p>
+                <p class="lead">Welcome to my personal portfolio website! Here you can find information about my projects, skills, and how to contact me.</p>
+                <a href="#projects" class="btn btn-primary btn-lg mt-3">View My Work</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="social-icons position-absolute end-0 me-5">
+        <a href="https://www.facebook.com/sushanta.gaha.magara/" class="social-link"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/mgr_sushant1/" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/mgrxsushant07" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+</section>
+
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">About Me</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <p>I am an enthusiastic IT student passionate about technology, coding, and innovation. I enjoy solving problems and building creative solutions using modern technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Skills</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row g-4">
+    
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon" style="width: 40px; height: 40px;">
+                                    <h6 class="mt-2">HTML</h6>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon" style="width: 40px; height: 40px;">
+                                    <h6 class="mt-2">CSS</h6>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon" style="width: 40px; height: 40px;">
+                                    <h6 class="mt-2">JavaScript</h6>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-icon" style="width: 40px; height: 40px;">
+                                    <h6 class="mt-2">Python</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="skill-icon" style="width: 40px; height: 40px;">
+                                    <h6 class="mt-2">Django</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-6 col-md-4 col-lg-2">
+                            <div class="card text-center shadow skill-card">
+                                <div class="card-body">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" class="skill-icon" style="width: 40px; height: 40px; filter: brightness(2);">
+                                    <h6 class="mt-2">WordPress</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Projects</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Django CountryInfo Website🌍</h5>
+                            <img src="{% static 'images/Django Country.webp' %}" alt="Project 1" class="img-fluid rounded">
+                            <p class="card-text">A Django-based web application that provides information about different countries using Django models and templates. This project demonstrates how to structure a Django app, utilize models for data storage, and render dynamic content with templates.</p>
+                            <a href="https://github.com/mgrxsushant07/CountryInfo-.git" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"> Django Institute Website 🖥️</h5>
+                            <img src="{% static 'images/computer institute.png' %}" alt="Project 2" class="img-fluid rounded">
+                            <p class="card-text">A fully functional Computer Institute Website built with Django, featuring a dynamic and responsive interface using HTML, CSS, and Bootstrap. This project includes essential functionalities like course management, student registration, contact forms, and more, making it a perfect solution for educational institutions.</p>
+                            <a href="https://github.com/mgrxsushant07/ComputerInstitute.git" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Django Dictionary Website 📖✨</h5>
+                            <img src="{% static 'images/Django dict.png' %}" alt="Project 3" class="img-fluid rounded">
+                            <p class="card-text">A simple yet powerful dictionary website built with Django models and templates. This project demonstrates how to structure a dictionary application using Django's ORM for storing words and their meanings, along with a clean and responsive template-based UI.</p>
+                            <a href="https://github.com/mgrxsushant07/DjangoDictionary.git" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Me</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow border-0 p-4">
+                        <form method="post" action="{% url 'home' %}">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder= "Your Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-chat-text"></i></span>
+                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>Contact Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="text-center text-white py-4 bg-dark">
+        <div class="container">
+            <div class="mb-2">
+                <a href="https://www.facebook.com/sushanta.gaha.magara/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/mgr_sushant1/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="https://github.com/mgrxsushant07" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-github"></i></a>
+                <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <div>&copy; 2025 Sushant Gaha Magar</div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+
+    <script>
+        // Scroll to #contact if ?submitted=true
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true') {
+            const contactSection = document.getElementById("contact");
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+
+                // Show success message
+                const alertBox = document.createElement('div');
+                alertBox.className = 'alert alert-success mt-3';
+                alertBox.innerText = 'Your message has been sent successfully!';
+                document.querySelector('#contact form .d-grid').appendChild(alertBox);
+            }
+
+            // Optional: remove the query param from URL without reload
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
+</body>
+
+</html>

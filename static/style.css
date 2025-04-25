@@ -1,0 +1,215 @@
+/* New Modern Theme */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    scroll-behavior: smooth;
+    background: none;
+    color: #232946;
+}
+
+#dynamic-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: none;
+}
+
+nav, footer {
+    z-index: 2;
+    position: relative;
+}
+
+section, footer {
+    position: relative;
+    z-index: 2;
+}
+
+.hero {
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar {
+    background: #232946 !important;
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+    color: #fffffe !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.navbar .nav-link.active, .navbar .nav-link:focus, .navbar .nav-link:hover {
+    color: #eebbc3 !important;
+}
+
+.btn-primary, .btn-primary:focus, .btn-primary:hover {
+    background: #eebbc3 !important;
+    border-color: #eebbc3 !important;
+    color: #232946 !important;
+}
+
+.btn-outline-light {
+    border-color: #eebbc3 !important;
+    color: #eebbc3 !important;
+}
+
+.btn-outline-light:hover {
+    background: #eebbc3 !important;
+    color: #232946 !important;
+}
+
+.card {
+    border-radius: 1rem;
+    background: #fffffe;
+    color: #232946;
+    border: none;
+    box-shadow: 0 2px 16px 0 rgba(35,41,70,0.07);
+}
+
+.bg-light {
+    background: #f7f7fb !important;
+    color: #232946 !important;
+}
+
+.badge {
+    background: #eebbc3;
+    color: #232946;
+    font-size: 1em;
+    padding: 0.7em 1.2em;
+    border-radius: 2em;
+    margin-bottom: 0.5em;
+}
+
+footer {
+    background: #232946 !important;
+    color: #b8c1ec !important;
+}
+
+.form-control {
+    background: #f7f7fb;
+    color: #232946;
+    border: 1px solid #b8c1ec;
+}
+
+.form-control:focus {
+    border-color: #eebbc3;
+    box-shadow: 0 0 0 0.2rem rgba(238,187,195,0.25);
+}
+
+/* Skill Card Custom Styles */
+.skill-card {
+    border: none;
+    border-radius: 1.3rem;
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px 0 rgba(35,41,70,0.09);
+}
+.skill-card:hover {
+    transform: translateY(-7px) scale(1.04);
+    box-shadow: 0 8px 32px 0 rgba(35,41,70,0.13);
+}
+.skill-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+
+/* White placeholder text for contact form */
+.form-control::placeholder, textarea::placeholder {
+    color: #fff !important;
+    opacity: 1;
+}
+
+/* For better contrast on the contact form background */
+#contact .form-control {
+    background: #232946;
+    color: #fff;
+    border: 1px solid #eebbc3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+/* Dark Mode Theme */
+body.dark-mode {
+    background: #121629 !important;
+    color: #fffffe;
+}
+
+body.dark-mode .navbar, body.dark-mode footer {
+    background: #121629 !important;
+    color: #b8c1ec !important;
+}
+
+body.dark-mode .navbar .navbar-brand, body.dark-mode .navbar .nav-link {
+    color: #eebbc3 !important;
+}
+
+body.dark-mode .navbar .nav-link.active, body.dark-mode .navbar .nav-link:focus, body.dark-mode .navbar .nav-link:hover {
+    color: #fffffe !important;
+}
+
+body.dark-mode .btn-primary, body.dark-mode .btn-primary:focus, body.dark-mode .btn-primary:hover {
+    background: #b8c1ec !important;
+    border-color: #b8c1ec !important;
+    color: #121629 !important;
+}
+
+body.dark-mode .btn-outline-light {
+    border-color: #b8c1ec !important;
+    color: #b8c1ec !important;
+}
+
+body.dark-mode .btn-outline-light:hover {
+    background: #b8c1ec !important;
+    color: #121629 !important;
+}
+
+body.dark-mode .card {
+    background: #232946;
+    color: #fffffe;
+}
+
+body.dark-mode .bg-light {
+    background: #232946 !important;
+    color: #b8c1ec !important;
+}
+
+body.dark-mode .badge {
+    background: #b8c1ec;
+    color: #121629;
+}
+
+body.dark-mode .form-control {
+    background: #232946;
+    color: #fffffe;
+    border: 1px solid #eebbc3;
+}
+
+body.dark-mode .form-control:focus {
+    border-color: #eebbc3;
+    box-shadow: 0 0 0 0.2rem rgba(238,187,195,0.25);
+}
+
+body.dark-mode #dynamic-bg {
+    filter: brightness(0.7) contrast(1.2);
+}
