@@ -29,7 +29,7 @@ STATIC_URL = '/static/'
 SECRET_KEY = 'django-insecure-67zmo7w%4)5(%d-(26zry4&79ubn+t%h+zx-)h6effl6z4s^i+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['localhost','127.0.0.1','142.93.220.43','sushantgaha.com.np']
 
 
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portfolio',
-    'projectapp',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +54,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sushantgaha.com.np',
+    'https://www.sushantgaha.com.np',
+    'https://www.sushantgaha.com.np/',
 ]
 
 ROOT_URLCONF = 'portfolio_site.urls'
