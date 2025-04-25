@@ -123,10 +123,9 @@ function setTheme(dark) {
     }
 }
 
-// Initial theme from localStorage or system preference
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('theme');
-setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+// Always default to dark mode for all visitors
+localStorage.setItem('theme', 'dark');
+setTheme(true);
 
 document.getElementById('theme-toggle').addEventListener('click', function() {
     const isDark = document.body.classList.toggle('dark-mode');
