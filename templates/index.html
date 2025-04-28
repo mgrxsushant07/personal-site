@@ -4,323 +4,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sushant Gaha Magar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Sushant Gaha Magar | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .contact-glass {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact-bg-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #0d6efd, #6f42c1);
+            opacity: 0.5;
+            border-radius: 10px;
+        }
+        .gradient-btn {
+            background: linear-gradient(90deg, #0d6efd, #6f42c1);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #6f42c1, #0d6efd);
+        }
+        .social-sidebar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .social-link {
+            width: 36px;
+            height: 36px;
+            display: block;
+        }
+        .social-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .social-sidebar-contact {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .social-link-contact {
+            width: 36px;
+            height: 36px;
+            display: block;
+        }
+        .social-link-contact img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Hide spider web in light mode, show in dark mode */
+        .light-mode #spider-web-bg { display: none !important; }
+        .dark-mode #spider-web-bg { display: block !important; }
+        /* Show spider wave in light mode, hide in dark mode */
+        .light-mode #spider-wave-bg { display: block !important; }
+        .dark-mode #spider-wave-bg { display: none !important; }
+        body.light-mode {
+            background: #f8f9fa !important;
+        }
+        body.dark-mode {
+            background: #191c22 !important;
+        }
+        /* Dynamic Light Mode Geometric Wave Background */
+        .light-wave-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.97;
+            background: #f8f9fa;
+            transition: filter 0.3s;
+        }
+        .light-mode .light-wave-bg {
+            display: block;
+        }
+        .dark-mode .light-wave-bg {
+            display: none;
+        }
+        .light-wave-bg svg {
+            width: 100vw; height: 100vh;
+            min-width: 100vw; min-height: 100vh;
+            position: absolute;
+            left: 0; top: 0;
+            opacity: 0.88;
+            pointer-events: none;
+        }
+        .light-wave-bg:hover {
+            filter: blur(1.2px) brightness(1.08);
+            opacity: 1;
+        }
+    </style>
 </head>
-<style>
-    ::placeholder {
-        color: white !important;
-        opacity: 1; /* Ensure full opacity */
-    }
-
-    /* For compatibility with some older browsers */
-    :-ms-input-placeholder {
-        color: white !important;
-    }
-
-    ::-ms-input-placeholder {
-        color: white !important;
-    }
-
-    /* Social Icons Styling */
-    .social-icons {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .social-link {
-        color: #eebbc3;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .social-link:hover {
-        color: #ffffff;
-        transform: translateX(-5px);
-    }
-
-    /* Button Hover Effect */
-    .btn-primary {
-        background-color: #eebbc3;
-        border-color: #eebbc3;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background-color: #dd99a1;
-        border-color: #dd99a1;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .social-icons {
-            position: static;
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 2rem;
-            transform: none;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px);
-        }
-    }
-</style>
-
-
-<body>
-    <div id="dynamic-bg"></div>
+<body class="light-mode">
+    <!-- Dark Mode Dynamic Background: Full-page Canvas Web -->
+    <canvas id="spider-web-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+    <!-- Dynamic Geometric Wave Background (Light Mode) -->
+    <div class="light-wave-bg">
+      <svg id="svg-light-wave-bg" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="geo-waves">
+          <path id="wave1" d="M0,450 Q225,300 450,450 T900,450" stroke="#00b4ff44" stroke-width="6" fill="none"/>
+          <path id="wave2" d="M0,500 Q225,650 450,500 T900,500" stroke="#00b4ff22" stroke-width="4.5" fill="none"/>
+          <path id="wave3" d="M0,350 Q225,200 450,350 T900,350" stroke="#00b4ff33" stroke-width="3.5" fill="none"/>
+          <path id="wave4" d="M0,600 Q225,800 450,600 T900,600" stroke="#00b4ff18" stroke-width="2.5" fill="none"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sushant Gaha Magar</a>
+            <a class="navbar-brand" href="#home">Sushant Gaha Magar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item d-flex align-items-center ms-3">
-                        <button id="theme-toggle" class="btn btn-outline-light btn-sm" title="Toggle dark/light mode">
-                            <span id="theme-toggle-icon" class="bi bi-moon"></span> <span class="d-none d-md-inline">Dark/Light</span>
-                        </button>
+                    <li class="nav-item">
+                        <button id="mode-toggle" class="btn btn-outline-light ms-3">🌙</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
- <!-- Add Font Awesome CSS to your head section -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<section class="hero d-flex align-items-center justify-content-center" id="home">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-4 text-center mb-4 mb-md-0">
-                <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="profile-img img-fluid rounded-circle shadow" style="width: 180px; height: 180px; object-fit: cover; border: 6px solid #eebbc3; background: #fff;">
-            </div>
-            <div class="col-md-8 text-center text-md-start">
-                <h1 class="display-4"><h3>Hello From</h3><br><h1><b>Sushant Gaha Magar</b></h1></h1>
-                <p class="lead">Aspiring Developer | Tech Enthusiast | Problem Solver</p>
-                <p class="lead">Welcome to my personal portfolio website! Here you can find information about my projects, skills, and how to contact me.</p>
-                <a href="#projects" class="btn btn-primary btn-lg mt-3"><h5>View My Work</h5></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Social Media Links -->
-    <div class="social-icons position-absolute end-0 me-5">
-        <a href="https://www.facebook.com/sushanta.gaha.magara/" class="social-link"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/mgr_sushant1/" class="social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/mgrxsushant07" class="social-link"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-</section>
-
-
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">About Me</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <p>I am an enthusiastic IT student passionate about technology, coding, and innovation. I enjoy solving problems and building creative solutions using modern technologies.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Skills</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="row g-4">
-    
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon" style="width: 40px; height: 40px;">
-                                    <h6 class="mt-2">HTML</h6>
-                                </div>
-                            </div>
+    <!-- Sections -->
+    <main class="flex-grow-1 d-flex flex-column">
+        <section id="home" class="section d-flex align-items-center justify-content-center text-center home-hero" style="position:relative;overflow:hidden;">
+            <div class="container" style="position:relative;z-index:1;">
+                <div class="row justify-content-center align-items-center">
+                    <!-- Profile Left Side -->
+                    <div class="col-md-4 mb-4 mb-md-0 text-center profile-hero-col">
+                        <div class="profile-hero-img-wrapper">
+                            <img src="{% static 'profile.jpg' %}" alt="Profile" class="profile-hero-img">
                         </div>
-    
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon" style="width: 40px; height: 40px;">
-                                    <h6 class="mt-2">CSS</h6>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon" style="width: 40px; height: 40px;">
-                                    <h6 class="mt-2">JavaScript</h6>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-icon" style="width: 40px; height: 40px;">
-                                    <h6 class="mt-2">Python</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="skill-icon" style="width: 40px; height: 40px;">
-                                    <h6 class="mt-2">Django</h6>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-6 col-md-4 col-lg-2">
-                            <div class="card text-center shadow skill-card">
-                                <div class="card-body">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" class="skill-icon" style="width: 40px; height: 40px; filter: brightness(2);">
-                                    <h6 class="mt-2">WordPress</h6>
-                                </div>
-                            </div>
-                        </div>
-                        
-    
+                    </div>
+                    <!-- Center Content -->
+                    <div class="col-md-8 mx-auto text-md-start text-center hero-content-col">
+                        <div class="hero-greeting mb-2">Hello From</div>
+                        <h1 class="hero-title">Sushant Gaha Magar</h1>
+                        <div class="hero-subtitle mb-3">Aspiring Developer | Tech Enthusiast | Problem Solver</div>
+                        <p class="hero-intro mb-4">Welcome to my personal portfolio website! Here you can find information about my projects, skills, and how to contact me.</p>
+                        <a href="#projects" class="btn btn-primary btn-lg hero-cta">View My Work</a>
                     </div>
                 </div>
             </div>
+        </section>
+        <!-- Social Media Fixed Right (between home and about) -->
+        <div class="social-sidebar-contact">
+            <a href="https://www.facebook.com/sushanta.gaha.magara/" class="social-link-contact" target="_blank" title="Facebook"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/mgr_sushant1/" class="social-link-contact" target="_blank" title="Instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://github.com/mgrxsushant07" class="social-link-contact" target="_blank" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" class="social-link-contact" target="_blank" title="LinkedIn"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></a>
         </div>
-    </section>
-    
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Projects</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Django CountryInfo Website🌍</h5>
-                            <img src="{% static 'images/Django Country.webp' %}" alt="Project 1" class="img-fluid rounded">
-                            <p class="card-text">A Django-based web application that provides information about different countries using Django models and templates. This project demonstrates how to structure a Django app, utilize models for data storage, and render dynamic content with templates.</p>
-                            <a href="https://github.com/mgrxsushant07/CountryInfo-.git" class="btn btn-primary">View Project</a>
+        <section id="about" class="section bg-light">
+            <div class="container">
+                <h2 class="text-center">About Me</h2>
+                <p class="text-center">I am an enthusiastic IT student passionate about technology, coding, and innovation. I enjoy solving<br> problems and building creative solutions using modern technologies.</p>
+            </div>
+        </section>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="text-center">Skills</h2>
+                <div class="row justify-content-center g-4 mt-4">
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" style="width:48px;height:48px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">HTML5</h6>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title"> Django Institute Website 🖥️</h5>
-                            <img src="{% static 'images/computer institute.png' %}" alt="Project 2" class="img-fluid rounded">
-                            <p class="card-text">A fully functional Computer Institute Website built with Django, featuring a dynamic and responsive interface using HTML, CSS, and Bootstrap. This project includes essential functionalities like course management, student registration, contact forms, and more, making it a perfect solution for educational institutions.</p>
-                            <a href="https://github.com/mgrxsushant07/ytvdodwld.git" class="btn btn-primary">View Project</a>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" style="width:48px;height:48px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">CSS3</h6>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Django Dictionary Website 📖✨</h5>
-                            <img src="{% static 'images/Django dict.png' %}" alt="Project 3" class="img-fluid rounded">
-                            <p class="card-text">A simple yet powerful dictionary website built with Django models and templates. This project demonstrates how to structure a dictionary application using Django's ORM for storing words and their meanings, along with a clean and responsive template-based UI.</p>
-                            <a href="https://github.com/mgrxsushant07/DjangoDictonaryWebsite.git" class="btn btn-primary">View Project</a>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" style="width:48px;height:48px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">JavaScript</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width:48px;height:48px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">Python</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" style="width:48px;height:48px;background:#fff;border-radius:8px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">Django</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card shadow-sm border-0 text-center py-4 skill-card h-100">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" style="width:48px;height:48px;" class="mx-auto mb-2">
+                            <h6 class="fw-bold mb-0">WordPress</h6>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="contact" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Contact Me</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card shadow border-0 p-4">
-                        <form method="post" action="{% url 'home' %}">
-                            {% csrf_token %}
-                          
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Name</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder= "Your Name">
+        </section>
+        <section id="projects" class="section bg-light">
+            <div class="container">
+                <h2 class="text-center">Projects</h2>
+                <div class="row justify-content-center g-4 mt-4">
+                    <!-- Project 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card project-card h-100 shadow border-0">
+                            <img src="{% static 'Country Info.png' %}" class="card-img-top" alt="Portfolio Website" style="height:180px;object-fit:cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Django CountryInfo Website🌍</h5>
+                                <p class="card-text">A web app providing detailed information about countries, built with Django framework.</p>
+                                <a href="https://github.com/mgrxsushant07/Django-CountryInfo-Website-" class="btn btn-outline-primary mt-auto" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card project-card h-100 shadow border-0">
+                            <img src="{% static 'computer institute.png' %}" class="card-img-top" alt="Youtube Video Downloader" style="height:180px;object-fit:cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Django Country Institute 📚🎓 </h5>
+                                <p class="card-text">A platform built with Django to explore and learn about different countries and their cultures.</p>
+                                <a href="https://github.com/mgrxsushant07/Student_management" class="btn btn-outline-primary mt-auto" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card project-card h-100 shadow border-0">
+                            <img src="{% static 'Django dict.png' %}" class="card-img-top" alt="Blog Platform" style="height:180px;object-fit:cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Django Dictionary Website 📖✨</h5>
+                                <p class="card-text">A dynamic platform to search, learn, and explore word meanings, built using Django.</p>
+                                <a href="https://github.com/mgrxsushant07/DjangoDictonaryWebsite" class="btn btn-outline-primary mt-auto" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card border-0 shadow-sm px-4 py-5 contact-form-modern">
+                            <div class="mb-4">
+                                <h2 class="text-center fw-bold mb-1">Contact</h2>
+                                <div class="text-center text-muted mb-2 contact-subtitle" style="font-size:1.08rem;">I'd love to hear from you. Please fill out the form below.</div>
+                                <hr class="mx-auto" style="width:50px;opacity:.25;">
+                            </div>
+                            <!--successfull message-->
+                            {% if messages %}
+                              {% for message in messages %}
+                                <div class="alert alert-success mt-3">
+                                  {{ message }}
+                                </div>
+                              {% endfor %}
+                            {% endif %}
+                            <form action="{% url 'index' %}" method="post">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label">Subject</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-chat-text"></i></span>
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
-                                    </div>
+                                <div class="d-grid mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>Contact Now</button>
                                 </div>
-                                <div class="col-12">
-                                    <label for="subject" class="form-label">Subject</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-chat-text"></i></span>
-                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message"></textarea>
-                                </div>
-                            </div>
-                            <div class="d-grid mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>Contact Now</button>
-                            </div>
-                        </form>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer class="text-center text-white py-4 bg-dark">
-        <div class="container">
+        </section>
+    </main>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script>
+// --- Animated Geometric Waves for Light Mode ---
+(function() {
+  const wave1 = document.getElementById('wave1');
+  const wave2 = document.getElementById('wave2');
+  const wave3 = document.getElementById('wave3');
+  const wave4 = document.getElementById('wave4');
+  let t = 0;
+  function animate() {
+    t += 0.08;
+    // Animate control points for gentle morphing
+    const q1 = 300 + Math.sin(t/2)*60;
+    const q2 = 650 + Math.cos(t/2)*60;
+    const q3 = 200 + Math.cos(t/2 + 1.5)*60;
+    const q4 = 800 + Math.sin(t/2 + 1.5)*60;
+    wave1.setAttribute('d', `M0,450 Q225,${q1} 450,450 T900,450`);
+    wave2.setAttribute('d', `M0,500 Q225,${q2} 450,500 T900,500`);
+    wave3.setAttribute('d', `M0,350 Q225,${q3} 450,350 T900,350`);
+    wave4.setAttribute('d', `M0,600 Q225,${q4} 450,600 T900,600`);
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+// Spider Web Animation (dark mode)
+const canvasWeb = document.getElementById('spider-web-bg');
+const ctxWeb = canvasWeb.getContext('2d');
+function resizeCanvasWeb() {
+    canvasWeb.width = window.innerWidth;
+    canvasWeb.height = window.innerHeight;
+}
+resizeCanvasWeb();
+let wWeb = canvasWeb.width;
+let hWeb = canvasWeb.height;
+const POINTS = 50;
+const DIST = 120;
+const MOUSE_DIST = 180;
+const points = [];
+let mouse = { x: wWeb/2, y: hWeb/2 };
+function randomVel() { return (Math.random() - 0.5) * 1.2; }
+function createPoint() {
+    return {
+        x: Math.random() * wWeb,
+        y: Math.random() * hWeb,
+        vx: randomVel(),
+        vy: randomVel(),
+        r: 2 + Math.random() * 1.5
+    };
+}
+function resetPoints() {
+    points.length = 0;
+    for (let i = 0; i < POINTS; i++) points.push(createPoint());
+}
+function drawWeb() {
+    ctxWeb.clearRect(0, 0, wWeb, hWeb);
+    for (let i = 0; i < POINTS; i++) {
+        for (let j = i + 1; j < POINTS; j++) {
+            let dx = points[i].x - points[j].x;
+            let dy = points[i].y - points[j].y;
+            let d = Math.sqrt(dx*dx + dy*dy);
+            if (d < DIST) {
+                ctxWeb.save();
+                ctxWeb.strokeStyle = `rgba(0,255,255,${0.85 * (1-d/DIST)})`;
+                ctxWeb.shadowColor = '#00fff7';
+                ctxWeb.shadowBlur = 8;
+                ctxWeb.lineWidth = 2.2 - d/DIST;
+                ctxWeb.beginPath();
+                ctxWeb.moveTo(points[i].x, points[i].y);
+                ctxWeb.lineTo(points[j].x, points[j].y);
+                ctxWeb.stroke();
+                ctxWeb.restore();
+            }
+        }
+        let dxm = points[i].x - mouse.x;
+        let dym = points[i].y - mouse.y;
+        let dm = Math.sqrt(dxm*dxm + dym*dym);
+        if (dm < MOUSE_DIST) {
+            ctxWeb.save();
+            ctxWeb.strokeStyle = `rgba(0,255,255,${0.9 * (1-dm/MOUSE_DIST)})`;
+            ctxWeb.shadowColor = '#00fff7';
+            ctxWeb.shadowBlur = 12;
+            ctxWeb.lineWidth = 2.5 - dm/MOUSE_DIST;
+            ctxWeb.beginPath();
+            ctxWeb.moveTo(points[i].x, points[i].y);
+            ctxWeb.lineTo(mouse.x, mouse.y);
+            ctxWeb.stroke();
+            ctxWeb.restore();
+        }
+    }
+    for (let i = 0; i < POINTS; i++) {
+        ctxWeb.save();
+        ctxWeb.beginPath();
+        ctxWeb.arc(points[i].x, points[i].y, points[i].r + 2.2, 0, 2 * Math.PI);
+        ctxWeb.fillStyle = '#00fff7';
+        ctxWeb.shadowColor = '#00fff7';
+        ctxWeb.shadowBlur = 18;
+        ctxWeb.globalAlpha = 0.95;
+        ctxWeb.fill();
+        ctxWeb.restore();
+    }
+}
+function updateWeb() {
+    for (let i = 0; i < POINTS; i++) {
+        points[i].x += points[i].vx;
+        points[i].y += points[i].vy;
+        if (points[i].x < 0 || points[i].x > wWeb) points[i].vx *= -1;
+        if (points[i].y < 0 || points[i].y > hWeb) points[i].vy *= -1;
+    }
+}
+function animateWeb() {
+    if (document.body.classList.contains('dark-mode')) {
+        updateWeb();
+        drawWeb();
+    }
+    requestAnimationFrame(animateWeb);
+}
+window.addEventListener('resize', () => {
+    resizeCanvasWeb();
+    wWeb = canvasWeb.width;
+    hWeb = canvasWeb.height;
+    resetPoints();
+});
+canvasWeb.addEventListener('mousemove', e => {
+    const rect = canvasWeb.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+});
+canvasWeb.addEventListener('mouseleave', () => {
+    mouse.x = wWeb/2;
+    mouse.y = hWeb/2;
+});
+resetPoints();
+animateWeb();
+    </script>
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
             <div class="mb-2">
-                <a href="https://www.facebook.com/sushanta.gaha.magara/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/mgr_sushant1/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-instagram"></i></a>
-                <a href="https://github.com/mgrxsushant07" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-github"></i></a>
-                <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" target="_blank" class="text-white mx-2 fs-4"><i class="bi bi-linkedin"></i></a>
+                &copy; 2025 Sushant Gaha Magar. All rights reserved.
             </div>
-            <div>&copy; 2025 Sushant Gaha Magar</div>
+            <div>
+                <a href="https://www.facebook.com/sushanta.gaha.magara/" class="text-light me-3" target="_blank" rel="noopener" title="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/mgr_sushant1" class="text-light me-3" target="_blank" rel="noopener" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://github.com/mgrxsushant07" class="text-light me-3" target="_blank" rel="noopener" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://www.linkedin.com/in/sushant-gaha-magar-437647317/" class="text-light me-3" target="_blank" rel="noopener" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="mailto:thitoma668@gmail.com" class="text-light" title="Email"><i class="bi bi-envelope"></i></a>
+            </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'script.js' %}"></script>
-
-    <script>
-        // Scroll to #contact if ?submitted=true
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('submitted') === 'true') {
-            const contactSection = document.getElementById("contact");
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-
-                // Show success message
-                const alertBox = document.createElement('div');
-                alertBox.className = 'alert alert-success mt-3';
-                alertBox.innerText = 'Your message has been sent successfully!';
-                document.querySelector('#contact form .d-grid').appendChild(alertBox);
-            }
-
-            // Optional: remove the query param from URL without reload
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-    </script>
 </body>
-
 </html>

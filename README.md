@@ -1,47 +1,17 @@
-# Portfolio Website
+# IT Student Single Page Django Website
 
-A professional portfolio website for an IT student, built with Django.
-
-## Features
-- Home, About, Projects, Blog, and Contact pages
-- Admin management for skills, projects, and blog posts
-- Responsive design using Bootstrap
-- Contact form (with email logic ready)
-- Static and media file support
+A modern, single-page Django web app for IT students, featuring:
+- Home, About, Skills, Projects, Contact sections
+- Bootstrap 5 responsive design
+- Dark/Light mode toggle
+- Dynamic, animated spider-web background (CSS)
 
 ## Setup
-1. Clone/download this repository.
-2. Create and activate a virtual environment:
-   ```
-   python -m venv venv
-   venv\Scripts\activate  # On Windows
-   ```
-3. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-4. Run migrations:
-   ```
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-5. Create a superuser:
-   ```
-   python manage.py createsuperuser
-   ```
-6. Start the development server:
-   ```
-   python manage.py runserver
-   ```
-7. Access the site at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run migrations: `python manage.py migrate`
+3. Start the server: `python manage.py runserver`
 
-## Customization
-- Edit templates in `templates/` for your own content and style.
-- Add your profile image to `static/images/profile.jpg`.
-- Add your resume as `static/resume.pdf`.
-
-## Admin
-- Manage skills, projects, and blog posts at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-
----
-MIT License
+## Features
+- SPA-like navigation
+- Interactive background
+- Modern UI

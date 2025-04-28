@@ -1,0 +1,430 @@
+html, body {
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+.section {
+    padding: 52px 0 36px 0;
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+}
+/* Spider Web Background */
+.spider-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, #e0e7ef 0%, #c6d0e1 100%);
+    overflow: hidden;
+}
+body.dark-mode .spider-bg {
+    background: radial-gradient(circle at 50% 50%, #23272f 0%, #121318 100%);
+}
+/* Spider Web Animation */
+.spider-bg::before, .spider-bg::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 120vw; height: 120vw;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.15;
+    border: 2px dashed #888;
+    animation: spin 24s linear infinite;
+}
+.spider-bg::after {
+    border: 2px dotted #888;
+    animation-direction: reverse;
+}
+body.dark-mode .spider-bg::before, body.dark-mode .spider-bg::after {
+    border-color: #aaa;
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+/* Section backgrounds for dark mode */
+body.dark-mode {
+    background: #181a20;
+    color: #eee;
+}
+body.dark-mode, body.dark-mode .section {
+    color: #f8f9fa !important;
+}
+body.dark-mode .section {
+    background: transparent !important;
+}
+body.dark-mode .navbar {
+    background: #222 !important;
+}
+body.dark-mode .card {
+    background: #23272f;
+    color: #eee;
+}
+body.dark-mode .form-control {
+    background: #23272f;
+    color: #eee;
+    border-color: #444;
+}
+body.dark-mode .btn-primary {
+    background: #444;
+    border-color: #555;
+}
+body.dark-mode ::placeholder {
+    color: #bfc8d3 !important;
+    opacity: 1;
+}
+/* Skill Cards */
+.skill-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 1rem;
+    transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.22s, border 0.22s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 2px solid transparent;
+}
+.skill-card img {
+    transition: transform 0.22s cubic-bezier(.4,2,.6,1);
+}
+.skill-card:hover {
+    transform: translateY(-10px) scale(1.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    background: #f7faff;
+    border-color: #0d6efd;
+}
+.skill-card:hover img {
+    transform: scale(1.18) rotate(-6deg);
+}
+body.dark-mode .skill-card {
+    background: rgba(34, 37, 44, 0.98);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    border-color: transparent;
+}
+body.dark-mode .skill-card:hover {
+    background: #23272f;
+    border-color: #0d6efd;
+}
+/* Project Cards */
+.project-card {
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transition: transform 0.22s cubic-bezier(.4,2,.6,1), box-shadow 0.22s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    background: #fff;
+}
+.project-card:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 8px 32px rgba(13,110,253,0.18);
+    border: 2px solid #0d6efd;
+}
+.project-card .card-img-top {
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+body.dark-mode .project-card {
+    background: #23272f;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    border: none;
+}
+body.dark-mode .project-card:hover {
+    background: #1a1d23;
+    border: 2px solid #0d6efd;
+}
+.project-card .btn-outline-primary {
+    border-radius: 2rem;
+    font-weight: 500;
+}
+/* Contact Card */
+.contact-card {
+    border-radius: 1.2rem;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(13,110,253,0.09);
+    transition: box-shadow 0.22s, border 0.22s;
+    border: 2px solid transparent;
+}
+.contact-card:focus-within, .contact-card:hover {
+    box-shadow: 0 8px 32px rgba(13,110,253,0.16);
+    border-color: #0d6efd;
+}
+body.dark-mode .contact-card {
+    background: #23272f;
+    border: 2px solid #23272f;
+    box-shadow: 0 2px 16px rgba(13,110,253,0.15);
+}
+body.dark-mode .contact-card:focus-within, body.dark-mode .contact-card:hover {
+    background: #1a1d23;
+    border-color: #0d6efd;
+}
+.contact-card .form-label {
+    font-weight: 500;
+}
+.contact-card .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.15);
+}
+.contact-card .btn-primary {
+    border-radius: 2rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.7rem 0;
+}
+/* Modern Contact Form */
+.contact-form-modern {
+    background: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 16px rgba(13,110,253,0.09);
+    border: none;
+}
+body.dark-mode .contact-form-modern {
+    background: #23272f;
+    box-shadow: 0 2px 16px rgba(13,110,253,0.15);
+}
+.contact-form-modern .form-floating > .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.12);
+}
+.contact-form-modern .btn-primary {
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.7rem 0;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+}
+.contact-form-modern .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.18);
+}
+body.dark-mode .contact-subtitle {
+    color: #bfc8d3 !important;
+}
+
+.hero-name {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 40px;
+    line-height: 48px;
+    vertical-align: baseline;
+    letter-spacing: normal;
+    word-spacing: 0px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.social-sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+.social-link {
+    width: 36px;
+    height: 36px;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 50%;
+}
+.social-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #fff;
+}
+.social-link:hover {
+    transform: scale(1.18) rotate(-8deg);
+    box-shadow: 0 4px 16px rgba(13,110,253,0.18);
+    background: #e9ecef;
+}
+body.dark-mode .social-link img {
+    background: #232946;
+}
+body.dark-mode .social-link:hover {
+    background: #353a50;
+    box-shadow: 0 4px 16px rgba(238,187,195,0.18);
+}
+@media (max-width: 992px) {
+    .social-sidebar {
+        right: 8px;
+        gap: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .social-sidebar {
+        display: none;
+    }
+}
+
+.social-sidebar-contact {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+.social-link-contact {
+    width: 36px;
+    height: 36px;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border-radius: 50%;
+}
+.social-link-contact img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #fff;
+}
+.social-link-contact:hover {
+    transform: scale(1.18) rotate(-8deg);
+    box-shadow: 0 4px 16px rgba(13,110,253,0.18);
+    background: #e9ecef;
+}
+body.dark-mode .social-link-contact img {
+    background: #232946;
+}
+body.dark-mode .social-link-contact:hover {
+    background: #353a50;
+    box-shadow: 0 4px 16px rgba(238,187,195,0.18);
+}
+@media (max-width: 992px) {
+    .social-sidebar-contact {
+        right: 8px;
+        gap: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .social-sidebar-contact {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 32px 0 20px 0;
+        margin-top: 24px;
+    }
+}
+
+.home-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+}
+.hero-greeting {
+    font-size: 1.25rem;
+    color: #0d6efd;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.hero-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #232946;
+}
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+.hero-intro {
+    font-size: 1.08rem;
+    color: #444;
+}
+.hero-cta {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.7rem 2.2rem;
+    border-radius: 2rem;
+    box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.hero-cta:hover {
+    background: #6f42c1;
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(111,66,193,0.10);
+}
+body.dark-mode .hero-title {
+    color: #fffffe;
+}
+body.dark-mode .hero-subtitle {
+    color: #bfc8d3;
+}
+body.dark-mode .hero-intro {
+    color: #bfc8d3;
+}
+
+.profile-hero-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-hero-img-wrapper {
+    display: inline-block;
+    padding: 0.5rem;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(13,110,253,0.07);
+}
+.profile-hero-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+}
+body.dark-mode .profile-hero-img-wrapper {
+    background: #232946;
+}
+@media (max-width: 768px) {
+    .profile-hero-img {
+        width: 110px;
+        height: 110px;
+    }
+    .profile-hero-img-wrapper {
+        padding: 0.2rem;
+    }
+}
+
+/* Footer Styles */
+.site-footer {
+    background: #212529;
+    color: #f8f9fa;
+    font-size: 1rem;
+    border-top: 1px solid #343a40;
+    z-index: 10;
+    position: relative;
+}
+.site-footer a {
+    color: #f8f9fa;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+.site-footer a:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+.site-footer .bi {
+    font-size: 1.3rem;
+    vertical-align: middle;
+}
